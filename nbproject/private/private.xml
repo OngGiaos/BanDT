@@ -2,6 +2,22 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/E:/Workspace/PRJ/AssignmentPRJ/src/java/Controller/LoginController.java</file>
+            <file>file:/E:/Workspace/PRJ/AssignmentPRJ/src/java/Controller/ForgotController.java</file>
+            <file>file:/E:/Workspace/PRJ/AssignmentPRJ/web/ForgotPassword.jsp</file>
+            <file>file:/E:/Workspace/PRJ/AssignmentPRJ/src/java/Controller/UserInformation.java</file>
+            <file>file:/E:/Workspace/PRJ/AssignmentPRJ/src/java/Model/HistoryDAO.java</file>
+            <file>file:/E:/Workspace/PRJ/AssignmentPRJ/web/Login.jsp</file>
+            <file>file:/E:/Workspace/PRJ/AssignmentPRJ/src/java/Controller/RegisterController.java</file>
+            <file>file:/E:/Workspace/PRJ/AssignmentPRJ/web/Register.jsp</file>
+            <file>file:/E:/Workspace/PRJ/AssignmentPRJ/web/User.jsp</file>
+            <file>file:/E:/Workspace/PRJ/AssignmentPRJ/src/java/Controller/HistoryController.java</file>
+            <file>file:/E:/Workspace/PRJ/AssignmentPRJ/src/java/Controller/updateProfile.java</file>
+            <file>file:/E:/Workspace/PRJ/AssignmentPRJ/src/java/Controller/changePassword.java</file>
+            <file>file:/E:/Workspace/PRJ/AssignmentPRJ/src/java/Model/Sold.java</file>
+            <file>file:/E:/Workspace/PRJ/AssignmentPRJ/src/java/Controller/updatePassword.java</file>
+            <file>file:/E:/Workspace/PRJ/AssignmentPRJ/src/java/Model/UserDAO.java</file>
+        </group>
     </open-files>
 </project-private>

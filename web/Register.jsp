@@ -28,27 +28,56 @@
                                     <form action="Register">
 
                                         <div class="form-outline mb-4">
-                                            <input type="text" name="name" value="${name}" id="form3Example1cg" class="form-control form-control-lg" />
+                                            <input required type="text" name="name" value="${name_}" id="form3Example1cg" class="form-control form-control-lg" />
                                             <label class="form-label" for="form3Example1cg">Your Name</label>
                                         </div>
 
-                                        <div class="form-outline mb-4">
-                                            <input type="email" name="email" value="${email}" id="form3Example3cg" class="form-control form-control-lg" />
+                                        <div  class="form-outline mb-4">
+                                            <input required type="email" name="email" value="${email_}" id="form3Example3cg" class="form-control form-control-lg" />
                                             <label class="form-label" for="form3Example3cg">Your Email</label>
+                                            <br><label style="color: red" class="form-label" for="form3Example4cdg">${validateEmail}</label>
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <input type="password" name="pass" id="form3Example4cg" class="form-control form-control-lg" />
+                                            <input required type="password" name="pass" id="form3Example4cg" class="form-control form-control-lg" />
                                             <label class="form-label" for="form3Example4cg">Password</label>
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <input type="password" name="confirmPass" id="form3Example4cdg" class="form-control form-control-lg" />
+                                            <input required type="password" name="confirmPass" id="form3Example4cdg" class="form-control form-control-lg" />
                                             <label class="form-label" for="form3Example4cdg">Repeat your password</label>
-                                            <br><label class="form-label" for="form3Example4cdg">${note}</label>
+                                            <br><label style="color: red" class="form-label" for="form3Example4cdg">${validatePass}</label>
                                         </div>
 
-                                        
+                                        <div class="form-outline mb-4">
+                                            <input required type="text" name="address" id="form3Example4cg" class="form-control form-control-lg" value="${address_}"/>
+                                            <label class="form-label" for="form3Example4cg">Address</label>
+                                        </div>
+
+                                        <div class="form-outline mb-4">
+                                            <input required type="text" name="city" value="${city_}" id="form3Example4cdg" class="form-control form-control-lg" />
+                                            <label class="form-label" for="form3Example4cdg">City</label>
+                                            <br><label class="form-label" for="form3Example4cdg"></label>
+                                        </div>
+
+                                        <div class="form-outline mb-4">
+                                            <input required type="text" name="country" value="${country_}" id="form3Example4cdg" class="form-control form-control-lg" />
+                                            <label class="form-label" for="form3Example4cdg">Country</label>
+                                            <br><label class="form-label" for="form3Example4cdg"></label>
+                                        </div><!-- comment -->
+
+                                        <div class="form-outline mb-4">
+                                            <input required type="text" name="zip" value="${zip_}" id="form3Example4cdg" class="form-control form-control-lg" />
+                                            <label class="form-label" for="form3Example4cdg">Zip code</label>
+                                            <br><label class="form-label" for="form3Example4cdg"></label>
+                                        </div>
+
+                                        <div class="form-outline mb-4">
+                                            <input required type="text" name="phone" id="form3Example4cdg" class="form-control form-control-lg" />
+                                            <label class="form-label" for="form3Example4cdg">Telephone</label>
+                                            <br><label style="color: red" class="form-label" for="form3Example4cdg">${validatePhone}</label>
+                                            <br><label class="form-label" for="form3Example4cdg"></label>
+                                        </div>
 
                                         <div class="d-flex justify-content-center">
                                             <input type="submit" name="register" value="Register"
