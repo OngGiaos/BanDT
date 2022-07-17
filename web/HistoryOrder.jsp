@@ -43,9 +43,9 @@
             <div id="top-header">
                 <div class="container">
                     <ul class="header-links pull-left">
-                        <li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
-                        <li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
-                        <li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
+                        <li><a href="#"><i class="fa fa-phone"></i> +0988668899</a></li>
+                        <li><a href="#"><i class="fa fa-envelope-o"></i> smartphoneeniver@email.com</a></li>
+                        <li><a href="#"><i class="fa fa-map-marker"></i> FPT Univer</a></li>
                     </ul>
                     <c:choose>
                         <c:when test="${user!=null}">
@@ -61,6 +61,9 @@
                             </ul>
                         </c:otherwise>
                     </c:choose>
+
+
+
                 </div>
             </div>
             <!-- /TOP HEADER -->
@@ -92,85 +95,84 @@
                                     </select> -->
                                     <input class="input"  type="text" name="searchIn" value="${searchIn}" placeholder="Search">
                                     <button class="search-btn" type="submit" name="search" value="ok">Search</button>
-                                </form>
                             </div>
                         </div>
                         <!-- /SEARCH BAR -->
 
                         <!-- ACCOUNT -->
-                        
                         <div class="col-md-3 clearfix">
                             <div class="header-ctn">
-                                <!-- Wishlist -->
-                                <div class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                                        <i class="fa fa-heart"></i>
-                                        <span>Wishlist</span>
+                                <c:if test="${user!=null}">
+                                    <!-- Wishlist -->
+                                    <div class="dropdown">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                            <i class="fa fa-heart"></i>
+                                            <span>Wishlist</span>
 
-                                        <div class="qty">${wishSize}</div>
-                                    </a>
-                                    <div class="cart-dropdown">
-                                        <div class="cart-list">
-                                            <c:forEach items="${wish}" var="w">
-                                                <c:if test="${w.phone.show==true}">
+                                            <div class="qty">${wishSize}</div>
+                                        </a>
+                                        <div class="cart-dropdown">
+                                            <div class="cart-list">
+                                                <c:forEach items="${wish}" var="w">
+                                                    <c:if test="${w.phone.show==true}">
+                                                        <div class="product-widget">
+                                                            <div class="product-img">
+                                                                <img src="${w.phone.img}" alt="">
+                                                            </div>
+                                                            <div class="product-body">
+                                                                <h3 class="product-name"><a href="ViewDetail?id=${w.phone.id}">${w.phone.name}</a></h3>
+                                                                <h4 class="product-price"><span class="qty">${w.quantity}x</span>${w.phone.price}VND</h4>
+                                                            </div>
+                                                            <button class="delete"><a href="deleteInWishlist?id=${w.phone.id}&page=home" class="fa fa-close"></a></button>
+                                                        </div>
+                                                    </c:if>
+                                                </c:forEach>
+                                            </div>
+                                            <div class="cart-summary">
+                                                <small>${wishSize} Item(s) selected</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /Wishlist -->
+
+                                    <!-- Cart -->
+
+                                    <div class="dropdown">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                            <i class="fa fa-shopping-cart"></i>
+                                            <span>Your Cart</span>
+
+                                            <div class="qty">${order.size()}</div>
+                                        </a>
+                                        <div class="cart-dropdown">
+                                            <div class="cart-list">
+                                                <c:forEach items="${order}" var="o">
                                                     <div class="product-widget">
                                                         <div class="product-img">
-                                                            <img src="${w.phone.img}" alt="">
+                                                            <img src="${o.phone.img}" alt="">
                                                         </div>
                                                         <div class="product-body">
-                                                            <h3 class="product-name"><a href="ViewDetail?id=${w.phone.id}">${w.phone.name}</a></h3>
-                                                            <h4 class="product-price"><span class="qty">${w.quantity}x</span>${w.phone.price}VND</h4>
+                                                            <h3 class="product-name"><a href="ViewDetail?id=${o.phone.id}">${o.phone.name}</a></h3>
+                                                            <h4 class="product-price"><span class="qty">${o.quantity}x</span>${o.phone.price}VND</h4>
                                                         </div>
-                                                        <button class="delete"><a href="deleteInWishlist?id=${w.phone.id}&page=home" class="fa fa-close"></a></button>
+                                                        <button class="delete"><a href="deleteInCart?id=${o.phone.id}&page=profile" class="fa fa-close"></a></button>
                                                     </div>
-                                                </c:if>
-                                            </c:forEach>
-                                        </div>
-                                        <div class="cart-summary">
-                                            <small>${wishSize} Item(s) selected</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /Wishlist -->
-
-                                <!-- Cart -->
-                                <div class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                                        <i class="fa fa-shopping-cart"></i>
-                                        <span>Your Cart</span>
-
-                                        <div class="qty">${order.size()}</div>
-                                    </a>
-                                    <div class="cart-dropdown">
-                                        <div class="cart-list">
-                                            <c:forEach items="${order}" var="o">
-                                                <div class="product-widget">
-                                                    <div class="product-img">
-                                                        <img src="${o.phone.img}" alt="">
-                                                    </div>
-                                                    <div class="product-body">
-                                                        <h3 class="product-name"><a href="ViewDetail?id=${o.phone.id}">${o.phone.name}</a></h3>
-                                                        <h4 class="product-price"><span class="qty">${o.quantity}x</span>${o.phone.price}VND</h4>
-                                                    </div>
-                                                    <button class="delete"><a href="deleteInCart?id=${o.phone.id}&page=checkout" class="fa fa-close"></a></button>
-                                                </div>
-                                            </c:forEach>
-
-                                        </div>
-                                        <div class="cart-summary">
-                                            <small>${order.size()} Item(s) selected</small>
-                                            <h5>SUBTOTAL: ${total}VND</h5>
-                                        </div>
-                                        <c:if test="${order.size()!=0}">
-                                            <div class="cart-btns">
-                                                <div></div>
-                                                <a href="checkout.jsp">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+                                                </c:forEach>
                                             </div>
-                                        </c:if>
+                                            <div class="cart-summary">
+                                                <small>${order.size()} Item(s) selected</small>
+                                                <h5>SUBTOTAL: ${total}VND</h5>
+                                            </div>
+                                            <c:if test="${order.size()!=0}">
+                                                <div class="cart-btns">
+                                                    <div></div>
+                                                    <a href="checkout.jsp">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+                                                </div>
+                                            </c:if>
+                                        </div>
                                     </div>
-                                </div>
-                                <!-- /Cart -->
-
+                                    <!-- /Cart -->
+                                </c:if>
                                 <!-- Menu Toogle -->
                                 <div class="menu-toggle">
                                     <a href="#">
@@ -181,6 +183,7 @@
                                 <!-- /Menu Toogle -->
                             </div>
                         </div>
+
                         <!-- /ACCOUNT -->
                     </div>
                     <!-- row -->
@@ -193,158 +196,62 @@
 
         <!-- NAVIGATION -->
         <nav id="navigation">
-            <!-- container -->
+
             <div class="container">
-                <!-- responsive-nav -->
+
                 <div id="responsive-nav">
-                    <!-- NAV -->
+
                     <ul class="main-nav nav navbar-nav">
                         <li class="active"><a href="Home">Home</a></li>
                     </ul>
-                    <!-- /NAV -->
                 </div>
-                <!-- /responsive-nav -->
             </div>
-            <!-- /container -->
         </nav>
-        <!-- /NAVIGATION -->
 
-        <!-- BREADCRUMB -->
-        <div id="breadcrumb" class="section">
-            <!-- container -->
-            <div class="container">
-                <!-- row -->
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3 class="breadcrumb-header">Checkout</h3>
-                        <ul class="breadcrumb-tree">
-                            <li><a href="Home">Home</a></li>
-                            <li class="active">Checkout</li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- /row -->
-            </div>
-            <!-- /container -->
-        </div>
-        <!-- /BREADCRUMB -->
-
-        <!-- SECTION -->
+        <!--History Here -->
         <div class="section">
-            <!-- container -->
-            <div class="container">
-                <!-- row -->
-                <div class="row">
-                    <form id="history" action="HistoryController">
-                        <div class="col-md-7">
-                            <!-- Billing Details -->
-                            <div class="billing-details">
-                                <div class="section-title">
-                                    <h3 class="title">Billing address</h3>
-                                </div>
-                                <div class="form-group">
-                                    <input hidden name="amount" value="${order.size()}">
-                                    <input class="input" type="text" name="name" placeholder="Name" value="${user.name}" required>
-                                </div>
-                                <div class="form-group">
-                                    <input class="input" type="email" name="email" placeholder="Email" value="${user.email}" required>
-                                </div>
-                                <div class="form-group">
-                                    <input class="input" type="text" name="address" placeholder="Address" value="${user.address}" required>
-                                </div>
-                                <div class="form-group">
-                                    <input class="input" type="text" name="city" placeholder="City" value="${user.city}" required>
-                                </div>
-                                <div class="form-group">
-                                    <input class="input" type="text" name="country" placeholder="Country" value="${user.country}" required>
-                                </div>
-                                <div class="form-group">
-                                    <input class="input" type="text" name="zip" placeholder="ZIP Code" value="${user.zip}" required>
-                                </div>
-                                <div class="form-group">
-                                    <input class="input" type="tel" name="tel" placeholder="Telephone" value="${user.phone}" required>
-                                </div>
-
-                            </div>
-                            <!-- /Billing Details -->
-                            <!-- Order notes -->
-                            <div class="order-notes">
-                                <textarea class="input" name="note" placeholder="Order Notes"></textarea>
-                            </div>
-                            <!-- /Order notes -->
-                        </div>
-
-                    </form>
-
-                    <!-- Order Details -->
-                    <div class="col-md-5 order-details">
-                        <div class="section-title text-center">
-                            <h3 class="title">Your Order</h3>
-                        </div>
-                        <div class="order-summary">
-                            <div class="order-col">
-                                <div><strong>PRODUCT</strong></div>
-                                <div><strong>UNIT PRICE</strong></div>
-                            </div>
-                            <div class="order-products">
-                                <c:forEach items="${order}" var="o">
-                                    <div class="order-col">
-                                        <div>${o.quantity}x ${o.phone.name}</div>
-                                        <div>${o.phone.price}VND</div>
-                                    </div>
-                                </c:forEach>
-                            </div>
-                            <div class="order-col">
-                                <div>Shiping</div>
-                                <div><strong>FREE</strong></div>
-                            </div>
-                            <div class="order-col">
-                                <div><strong>TOTAL</strong></div>
-                                <div><strong class="order-total">${total}VND</strong></div>
-                            </div>
-                        </div>
-
-                        <button form="history" style="margin: auto" class="primary-btn order-submit" type="submit" name="replaceorder" value="ok">Place order</button>
-                    </div>
-                    <!-- /Order Details -->
-                </div>
-                <!-- /row -->
-            </div>
-            <!-- /container -->
-        </div>
-        <!-- /SECTION -->
-
-        <!-- NEWSLETTER -->
-        <div id="newsletter" class="section">
-            <!-- container -->
             <div class="container">
                 <!-- row -->
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="newsletter">
-
-                            <ul class="newsletter-follow">
-                                <li>
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa fa-instagram"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa fa-pinterest"></i></a>
-                                </li>
-                            </ul>
+                        <div class="section-title">
+                            <h3 class="title">History >> </h3>
+                            <h4 class="title"><a href="UserInformation">Go Back</a></h4>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <c:choose>
+                                <c:when test="${sold.size()>0}">
+                                    <table border="1" style="text-align: center" >
+                                        <tr>
+                                            <td>Phone ID</td>
+                                            <td>Phone Name</td>
+                                            <td>Unit Price</td><!-- comment -->
+                                            <td>Quantity</td>
+                                            <td>Date</td>
+                                        </tr>
+                                        <c:forEach items="${sold}" var="s">
+                                            <tr>
+                                                <td>${s.pid}</td>
+                                                <td><a href="ViewDetail?id=${s.pid}">${s.pname}</a></td>
+                                                <td>${s.pprice}</td><!-- comment -->
+                                                <td>${s.quantity}</td>
+                                                <td>${s.date}</td>
+                                            </tr>
+                                        </c:forEach>
+                                    </table>
+                                </c:when>
+                                <c:otherwise>
+                                    <h1>Chua mua gi!</h1>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </div>
                 </div>
-                <!-- /row -->
             </div>
-            <!-- /container -->
         </div>
-        <!-- /NEWSLETTER -->
+        <!--History Here -->
 
         <!-- FOOTER -->
         <footer id="footer">
