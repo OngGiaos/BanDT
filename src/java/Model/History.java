@@ -4,33 +4,33 @@
  */
 package Model;
 
+import Model.Order;
+import java.time.LocalDate;
+import java.util.ArrayList;
+
 /**
  *
  * @author TGDD
  */
-public class User {
+public class History {
+    String name, email, address, city, country, zip, tel, note;
+    LocalDate date;
+    ArrayList<Order> order;
 
-    private String name, email, pass, address, city, country, zip, phone;
-
-    public User() {
+    public History() {
     }
 
-    public User(String name, String email, String pass, String address, String city, String country, String zip, String phone) {
+    public History(String name, String email, String address, String city, String country, String zip, String tel, String note, LocalDate date, ArrayList<Order> order) {
         this.name = name;
         this.email = email;
-        this.pass = pass;
         this.address = address;
         this.city = city;
         this.country = country;
         this.zip = zip;
-        this.phone = phone;
-    }
-
-   
-
-    @Override
-    public String toString() {
-        return "User{" + "name=" + name + ", email=" + email + ", pass=" + pass + ", address=" + address + ", city=" + city + ", country=" + country + ", zip=" + zip + ", phone=" + phone + '}';
+        this.tel = tel;
+        this.note = note;
+        this.date = date;
+        this.order = order;
     }
 
     public String getName() {
@@ -47,14 +47,6 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPass() {
-        return pass;
-    }
-
-    public void setPass(String pass) {
-        this.pass = pass;
     }
 
     public String getAddress() {
@@ -89,12 +81,37 @@ public class User {
         this.zip = zip;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getTel() {
+        return tel;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setTel(String tel) {
+        this.tel = tel;
     }
 
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public ArrayList<Order> getOrder() {
+        return order;
+    }
+
+    public void setOrder(ArrayList<Order> order) {
+        this.order = order;
+    }
+    
+    
 }

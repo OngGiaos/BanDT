@@ -12,6 +12,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -41,22 +42,46 @@ public class RegisterController extends HttpServlet {
             String email = request.getParameter("email");
             String pass = request.getParameter("pass");
             String confirmPass = request.getParameter("confirmPass");
+            String address = request.getParameter("address");
+            String city = request.getParameter("city");
+            String country = request.getParameter("country");
+            String zip = request.getParameter("zip");
+            String phone = request.getParameter("phone");
             String note = "";
+
+            String validateEmail = "";
+            String validatePass = "";
+            String validatePhone = "";
             UserDAO u = new UserDAO();
             if (request.getParameter("register") != null) {
                 if (!u.checkAccount(email)) {
-                    if (pass.equals(confirmPass)) {
-                        User newU = new User(name, email, pass);
-                        u.register(newU);
-                        request.setAttribute("note", "Successfully!");
-                        request.getRequestDispatcher("Register.jsp").forward(request, response);
+                    if (pass.equals(confirmPass) && pass.length() >= 6) {
+                        if (phone.matches("[0]{1}[3|8|9]{1}[0-9]{8}")) {
+                            User newU = new User(name, email, pass, address, city, country, zip, phone);
+                            u.register(newU);
+                            request.setAttribute("note", " Register Successfully!");
+                            request.getRequestDispatcher("Login.jsp").forward(request, response);
+                        } else {
+                            validatePhone = "Phone Number must begin 09, 03 or 08 and 10 characters in length!";
+                        }
+                    } else if (pass.equals(confirmPass)) {
+                        validatePass = "Password must be at least 6 characters long!";
+                    } else {
+                        validatePass = "Password was not match!";
                     }
+                    request.setAttribute("email_", email);
+                } else {
+                    validateEmail = "Email existed!";
                 }
             }
-            request.setAttribute("name", name);
-            request.setAttribute("email", email);
-            note = "Something went wrong!";
-            request.setAttribute("note", note);
+            request.setAttribute("name_", name);
+            request.setAttribute("validateEmail", validateEmail);
+            request.setAttribute("validatePass", validatePass);
+            request.setAttribute("validatePhone", validatePhone);
+            request.setAttribute("address_", address);
+            request.setAttribute("city_", city);
+            request.setAttribute("country_", country);
+            request.setAttribute("zip_", zip);
             request.getRequestDispatcher("Register.jsp").forward(request, response);
         }
     }
