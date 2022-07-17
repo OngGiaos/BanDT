@@ -4,21 +4,23 @@
  */
 package Controller;
 
+import Model.Order;
+import Model.OrderDAO;
+import Model.Product;
 import Model.User;
-import Model.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 /**
  *
  * @author TGDD
  */
-public class LoginController extends HttpServlet {
+public class CheckOutController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,36 +39,21 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String email = request.getParameter("email");
-        String pass = request.getParameter("pass");
-        UserDAO u = new UserDAO();
-        String note = "";
-        if (!u.checkAccount(email)) {
-            request.setAttribute("note", "Email not exist!");
-            request.getRequestDispatcher("Login.jsp").forward(request, response);
-        } else if (pass.length() < 6) {
-            note = "Password must be at least 6 characters long!";
-            request.setAttribute("email", email);
-            request.setAttribute("note", note);
-            request.getRequestDispatcher("Login.jsp").forward(request, response);
-        } else {
-            if (u.checkLogin(email, pass)) {
-                User user = u.getUser(email, pass);
-                request.getSession().setAttribute("user", user);
-                response.sendRedirect("Home");
-            } else {
-                note = "Password incorrect!";
-                request.setAttribute("email", email);
-                request.setAttribute("note", note);
-                request.getRequestDispatcher("Login.jsp").forward(request, response);
-            }
+
+        if (request.getSession().getAttribute("user") != null) {
+            OrderDAO od = new OrderDAO();
+            User user = (User) request.getSession().getAttribute("user");
+            ArrayList<Order> order = od.orderData(user);
+            ArrayList<Order> wish = od.wishlist(user);
+            long t = od.getTotal(order);
+            String total = od.convertPrice(t);
+            request.getSession().setAttribute("total", total);
+            request.getSession().setAttribute("wish", wish);
+            request.getSession().setAttribute("order", order);
+            request.getRequestDispatcher("checkout.jsp").forward(request, response);
+        } else{
+            response.sendRedirect("Home");
         }
-//        if (u.checkAccount(email)) {
-//
-//        } else {
-//            request.setAttribute("note", "Email not exist!");
-//            request.getRequestDispatcher("Login.jsp").forward(request, response);
-//        }
     }
 
     @Override
